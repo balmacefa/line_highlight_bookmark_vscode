@@ -4,6 +4,7 @@
 	"description": "Bookmark code lines",
 	"publisher": "RK",
 	"version": "0.0.2",
+	"repository": "https://github.com/chestozo/vscode-bookmarksng",
 	"engines": {
 		"vscode": "^1.43.0"
 	},

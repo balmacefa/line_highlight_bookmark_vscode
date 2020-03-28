@@ -14,10 +14,11 @@ After installation I recommend to setup shortcuts for commands:
 ## Changelog
 
 ### 0.0.2
-Readme update.
+- readme update
+- add repository
 
 ### 0.0.1
-Initial version with the main functionallity of toggling bookmarks and clearing all of them at once.
+- initial version with the main functionallity of toggling bookmarks and clearing all of them at once.
 
 ## Known issues and plans
 - bookmarks are lost when user is swithing to another tab - this will be fixed soon
