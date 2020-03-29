@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.4
+
+- icon update
+- readme example
+
 ## 0.0.3
 
 - fixed lost bookmarks during file switching or IDE reopenings
