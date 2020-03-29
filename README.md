@@ -1,3 +1,5 @@
+
+
 # Bookmarks NG
 
 Set little icons in VS Code gutter for quick visual lookup.
@@ -16,3 +18,6 @@ After installation I recommend to setup shortcuts for commands:
 - bookmarks are set for lines and not for selection ranges
 - **multiple cursors support!** add bookmarks for all cursor lines with a single shortcut
 - context dependent bookmarks: if there are no bookmarks at some cursor positions - bookmarks are set. Otherwise they are unset.
+
+## Thank you!
+<a href="https://www.buymeacoffee.com/UMcwqLs" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="160px"></a>
