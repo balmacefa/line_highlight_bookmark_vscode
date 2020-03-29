@@ -12,12 +12,12 @@
 		"Other"
 	],
 	"activationEvents": [
+		"*",
 		"onCommand:bookmarksNG.toogleBookmarks"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
+		"commands": [{
 				"command": "bookmarksNG.toogleBookmarks",
 				"title": "Bookmarks NG: Toogle Bookmarks"
 			},

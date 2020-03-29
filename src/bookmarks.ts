@@ -24,40 +24,31 @@ function getKey(line: number) {
 export const bookmarksManager = {
   bookmarks: {} as Bookmarks,
 
-  loadFromState(context: vscode.ExtensionContext) {
+  _saveToState(context: vscode.ExtensionContext) {
+    try {
+      const data = JSON.stringify(
+        Object.values(this.bookmarks).map(({ line }) => line)
+      );
+
+      context.workspaceState.update(storeKey, data);
+    } catch (ex) {}
+  },
+
+  _loadFromState(context: vscode.ExtensionContext) {
     this.bookmarks = {};
 
     try {
       const lines = JSON.parse(
-        context.workspaceState.get(storeKey, '[]')
+        context.workspaceState.get(storeKey, '[ 3 ]')
       ) as number[];
+
       if (lines.length) {
-        lines.forEach((line) => this.bookmarkLine(line, context));
+        lines.forEach((line) => this._bookmarkLine(line, context));
       }
     } catch (ex) {}
   },
 
-  saveToState(context: vscode.ExtensionContext) {
-    try {
-      context.workspaceState.update(
-        storeKey,
-        JSON.stringify(Object.values(this.bookmarks).map(({ line }) => line))
-      );
-    } catch (ex) {}
-  },
-
-  toggleBookmarks(lines: number[], context: vscode.ExtensionContext) {
-    const currentLines = Object.values(this.bookmarks).map(({ line }) => line);
-    const newLines = lines.filter((l) => !currentLines.includes(l));
-
-    if (newLines.length) {
-      newLines.forEach((l) => this.bookmarkLine(l, context));
-    } else {
-      this.clearBookmarkAtLines(lines, context);
-    }
-  },
-
-  bookmarkLine(line: number, context: vscode.ExtensionContext) {
+  _bookmarkLine(line: number, context: vscode.ExtensionContext) {
     const key = getKey(line);
     const decoration =
       this.bookmarks[key]?.decoration ||
@@ -71,11 +62,9 @@ export const bookmarksManager = {
     ]);
 
     this.bookmarks[key] = { decoration, line };
-
-    this.saveToState(context);
   },
 
-  clearBookmarkAtLines(lines: number[], context: vscode.ExtensionContext) {
+  _clearBookmarksAtLines(lines: number[]) {
     lines
       .map((l) => getKey(l))
       .forEach((key) => {
@@ -86,8 +75,23 @@ export const bookmarksManager = {
           delete this.bookmarks[key];
         }
       });
+  },
 
-    this.saveToState(context);
+  init(context: vscode.ExtensionContext) {
+    this._loadFromState(context);
+  },
+
+  toggleBookmarks(lines: number[], context: vscode.ExtensionContext) {
+    const currentLines = Object.values(this.bookmarks).map(({ line }) => line);
+    const newLines = lines.filter((l) => !currentLines.includes(l));
+
+    if (newLines.length) {
+      newLines.forEach((l) => this._bookmarkLine(l, context));
+    } else {
+      this._clearBookmarksAtLines(lines);
+    }
+
+    this._saveToState(context);
   },
 
   clearAllBookmarks(context: vscode.ExtensionContext) {
@@ -97,10 +101,6 @@ export const bookmarksManager = {
 
     this.bookmarks = {};
 
-    this.saveToState(context);
-  },
-
-  init(context: vscode.ExtensionContext) {
-    this.loadFromState(context);
+    this._saveToState(context);
   },
 };
