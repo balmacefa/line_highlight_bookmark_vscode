@@ -28,6 +28,19 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      'bookmarksNG.navigateToNextBookmark',
+      () => {
+        if (!vscode.window.activeTextEditor) {
+          return;
+        }
+
+        bookmarksManager.navigateToNext(context);
+      }
+    )
+  );
+
   // Load bookmarks after active file changes.
   vscode.window.onDidChangeActiveTextEditor(
     (editor) => {

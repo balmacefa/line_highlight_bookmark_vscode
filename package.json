@@ -1,52 +1,74 @@
 {
-	"name": "bookmarksng",
-	"displayName": "BookmarksNG",
-	"description": "Bookmark code lines",
-	"publisher": "RK",
-	"version": "0.0.6",
-	"repository": "https://github.com/chestozo/vscode-bookmarksng",
-	"engines": {
-		"vscode": "^1.43.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*",
-		"onCommand:bookmarksNG.toogleBookmarks"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [{
-				"command": "bookmarksNG.toogleBookmarks",
-				"title": "Bookmarks NG: Toogle Bookmarks"
-			},
-			{
-				"command": "bookmarksNG.clearAllBookmarks",
-				"title": "Bookmarks NG: Clear All Bookmarks"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.1",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.43.0",
-		"@typescript-eslint/eslint-plugin": "^2.18.0",
-		"@typescript-eslint/parser": "^2.18.0",
-		"eslint": "^6.8.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.0.1",
-		"prettier": "^2.0.2",
-		"typescript": "^3.7.5",
-		"vscode-test": "^1.3.0"
-	}
+  "name": "bookmarksng",
+  "displayName": "BookmarksNG",
+  "description": "Bookmark code lines",
+  "publisher": "RK",
+  "version": "0.0.7",
+  "repository": "https://github.com/chestozo/vscode-bookmarksng",
+  "engines": {
+    "vscode": "^1.43.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [{
+        "command": "bookmarksNG.toogleBookmarks",
+        "title": "Bookmarks NG: Toogle Bookmarks"
+      },
+      {
+        "command": "bookmarksNG.clearAllBookmarks",
+        "title": "Bookmarks NG: Clear All Bookmarks"
+      },
+      {
+        "command": "bookmarksNG.navigateToNextBookmark",
+        "title": "Bookmarks NG: Move cursor to the next bookmark"
+      }
+    ],
+    "keybindings": [{
+        "command": "bookmarksNG.toogleBookmarks",
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "bookmarksNG.clearAllBookmarks",
+        "key": "ctrl+shift+b",
+        "mac": "cmd+shift+b",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "bookmarksNG.navigateToNextBookmark",
+        "key": "f2",
+        "mac": "f2",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.43.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "eslint": "^6.8.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.0.1",
+    "prettier": "^2.0.2",
+    "typescript": "^3.7.5",
+    "vscode-test": "^1.3.0"
+  }
 }

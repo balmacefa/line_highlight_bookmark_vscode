@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { logger } from './logger';
-import { fileExists } from './utils';
+import { fileExists, getNextLine, moveCursorToLine } from './utils';
 
 const storeKey = 'bookmarksNG';
 
@@ -142,5 +142,20 @@ export const bookmarksManager = {
     this.bookmarks = {};
 
     this._saveToState(context);
+  },
+
+  navigateToNext(context: vscode.ExtensionContext) {
+    const currentLine = vscode.window.activeTextEditor!.selection.active.line;
+    const lines = Object.values(this.bookmarks)
+      .map(({ line }) => line)
+      .sort((a, b) => a - b);
+
+    let nextLine = getNextLine(lines, currentLine);
+
+    logger.info(
+      `try to navigate from current line which is ${currentLine} to ${nextLine}`
+    );
+
+    moveCursorToLine(nextLine);
   },
 };

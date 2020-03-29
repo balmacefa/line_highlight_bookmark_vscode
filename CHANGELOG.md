@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7
+
+- new command added - `bookmarksNG.navigateToNextBookmark` (default shortcut `F2`)
+
 ## 0.0.5
 
 - readme example
