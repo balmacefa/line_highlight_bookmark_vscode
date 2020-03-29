@@ -1,9 +1,14 @@
-# Change Log
+# Changelog
 
-All notable changes to the "bookmarksng" extension will be documented in this file.
+## 0.0.3
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- fixed lost bookmarks during file switching or IDE reopenings
 
-## [Unreleased]
+## 0.0.2
 
-- Initial release
+- readme update
+- add repository
+
+## 0.0.1
+
+- initial version with the main functionallity of toggling bookmarks and clearing all of them at once.
