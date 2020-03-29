@@ -1,8 +1,6 @@
-
-
 # Bookmarks NG
 
-Set little icons in VS Code gutter for quick visual lookup.
+Bookmark important lines of code to quickly get back to later.
 
 <img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/demo.gif?raw=true" width="520px" />
 
