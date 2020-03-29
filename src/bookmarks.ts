@@ -17,7 +17,7 @@ type BookmarksStateDump = {
 
 function createLineDecoration(context: vscode.ExtensionContext): object {
   const decorationOptions: vscode.DecorationRenderOptions = {
-    gutterIconPath: context.asAbsolutePath('images/bookmark.png'),
+    gutterIconPath: context.asAbsolutePath('images/icon.svg'), // nice
   };
   decorationOptions.isWholeLine = true;
   return decorationOptions;
