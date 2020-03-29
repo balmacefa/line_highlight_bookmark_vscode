@@ -1,12 +1,18 @@
 import * as vscode from 'vscode';
+import { logger } from './logger';
+import { fileExists } from './utils';
 
 const storeKey = 'bookmarksNG';
 
 type Bookmarks = {
-  [key: string]: {
+  [bookmarkKey: string]: {
     line: number;
     decoration: vscode.TextEditorDecorationType;
   };
+};
+
+type BookmarksStateDump = {
+  [filePath: string]: number[];
 };
 
 function createLineDecoration(context: vscode.ExtensionContext): object {
@@ -23,29 +29,55 @@ function getKey(line: number) {
 
 export const bookmarksManager = {
   bookmarks: {} as Bookmarks,
+  filePath: '' as string | undefined,
+
+  _getStoredData(context: vscode.ExtensionContext): BookmarksStateDump {
+    try {
+      const data: BookmarksStateDump = JSON.parse(
+        context.workspaceState.get(storeKey, '{}')
+      );
+      return data;
+    } catch (ex) {
+      logger.error(`_getStoredData ${ex.message}`);
+      return {};
+    }
+  },
 
   _saveToState(context: vscode.ExtensionContext) {
-    try {
-      const data = JSON.stringify(
-        Object.values(this.bookmarks).map(({ line }) => line)
-      );
+    if (!this.filePath) {
+      return;
+    }
 
-      context.workspaceState.update(storeKey, data);
-    } catch (ex) {}
+    const data = {
+      ...this._getStoredData(context),
+      [this.filePath]: Object.values(this.bookmarks).map(({ line }) => line),
+    };
+    const saveData: BookmarksStateDump = {};
+
+    Object.keys(data).forEach((filePath) => {
+      const lines = data[filePath];
+      if (lines.length && fileExists(filePath)) {
+        saveData[filePath] = lines;
+      }
+    });
+
+    logger.info(`will save ${JSON.stringify(saveData)}`);
+
+    context.workspaceState.update(storeKey, JSON.stringify(saveData));
   },
 
   _loadFromState(context: vscode.ExtensionContext) {
+    const data = this._getStoredData(context);
+
     this.bookmarks = {};
 
-    try {
-      const lines = JSON.parse(
-        context.workspaceState.get(storeKey, '[ 3 ]')
-      ) as number[];
+    logger.info(
+      `will load bookmarks for file ${this.filePath} ${JSON.stringify(data)}`
+    );
 
-      if (lines.length) {
-        lines.forEach((line) => this._bookmarkLine(line, context));
-      }
-    } catch (ex) {}
+    if (this.filePath && data[this.filePath]?.length) {
+      data[this.filePath].forEach((line) => this._bookmarkLine(line, context));
+    }
   },
 
   _bookmarkLine(line: number, context: vscode.ExtensionContext) {
@@ -77,8 +109,16 @@ export const bookmarksManager = {
       });
   },
 
-  init(context: vscode.ExtensionContext) {
+  loadForFile(filePath: string | undefined, context: vscode.ExtensionContext) {
+    this.filePath = filePath;
     this._loadFromState(context);
+  },
+
+  init(context: vscode.ExtensionContext) {
+    this.loadForFile(
+      vscode.window.activeTextEditor?.document?.uri.fsPath,
+      context
+    );
   },
 
   toggleBookmarks(lines: number[], context: vscode.ExtensionContext) {
