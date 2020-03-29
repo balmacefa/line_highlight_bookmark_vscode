@@ -2,6 +2,8 @@
 
 Set little icons in VS Code gutter for quick visual lookup.
 
+<img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/demo.gif?raw=true" width="520px" />
+
 ## Setup
 
 After installation I recommend to setup shortcuts for commands:
