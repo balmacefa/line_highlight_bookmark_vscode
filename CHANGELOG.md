@@ -1,9 +1,12 @@
 # Changelog
 
+## 0.0.5
+
+- readme example
+
 ## 0.0.4
 
 - icon update
-- readme example
 
 ## 0.0.3
 
