@@ -1,6 +1,9 @@
 {
+  "version": "0.0.8",
   "name": "bookmarksng",
   "displayName": "BookmarksNG",
+  "publisher": "RK",
+  "repository": "https://github.com/chestozo/vscode-bookmarksng",
   "description": "Bookmark code lines",
   "keywords": [
     "bookmark",
@@ -19,9 +22,6 @@
     "theme": "dark"
   },
   "icon": "images/logo.png",
-  "version": "0.0.7",
-  "publisher": "RK",
-  "repository": "https://github.com/chestozo/vscode-bookmarksng",
   "engines": {
     "vscode": "^1.43.0"
   },
