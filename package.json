@@ -30,38 +30,40 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "bookmarksNG.toogleBookmarks",
-      "title": "Bookmarks NG: Toogle Bookmarks"
-    },
-    {
-      "command": "bookmarksNG.clearAllBookmarks",
-      "title": "Bookmarks NG: Clear All Bookmarks"
-    },
-    {
-      "command": "bookmarksNG.navigateToNextBookmark",
-      "title": "Bookmarks NG: Move cursor to the next bookmark"
-    }
-  ],
-    "keybindings": [{
-      "command": "bookmarksNG.toogleBookmarks",
-      "key": "ctrl+b",
-      "mac": "cmd+b",
-      "when": "editorTextFocus"
-    },
-    {
-      "command": "bookmarksNG.clearAllBookmarks",
-      "key": "ctrl+shift+b",
-      "mac": "cmd+shift+b",
-      "when": "editorTextFocus"
-    },
-    {
-      "command": "bookmarksNG.navigateToNextBookmark",
-      "key": "f2",
-      "mac": "f2",
-      "when": "editorTextFocus"
-    }
-  ]
+    "commands": [
+      {
+        "command": "bookmarksNG.toogleBookmarks",
+        "title": "Bookmarks NG: Toogle Bookmarks"
+      },
+      {
+        "command": "bookmarksNG.clearAllBookmarks",
+        "title": "Bookmarks NG: Clear All Bookmarks"
+      },
+      {
+        "command": "bookmarksNG.navigateToNextBookmark",
+        "title": "Bookmarks NG: Move cursor to the next bookmark"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "bookmarksNG.toogleBookmarks",
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "bookmarksNG.clearAllBookmarks",
+        "key": "ctrl+shift+b",
+        "mac": "cmd+shift+b",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "bookmarksNG.navigateToNextBookmark",
+        "key": "f2",
+        "mac": "f2",
+        "when": "editorTextFocus"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
@@ -73,8 +75,8 @@
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
-    "@types/mocha": "^7.0.1",
-    "@types/node": "^12.11.7",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.0",
     "@types/vscode": "^1.43.0",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",

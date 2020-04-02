@@ -1,17 +1,16 @@
-import * as vscode from 'vscode';
+import * as vscode from 'vscode'
+import { isDebug } from './utils'
 
 export const logger = {
-  debug: false,
-
   info(message: string) {
-    if (this.debug) {
-      vscode.window.showInformationMessage(message);
+    if (isDebug()) {
+      vscode.window.showInformationMessage(message)
     }
   },
 
   error(message: string) {
-    if (this.debug) {
-      vscode.window.showErrorMessage(message);
+    if (isDebug()) {
+      vscode.window.showErrorMessage(message)
     }
   },
-};
+}

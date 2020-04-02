@@ -1,6 +1,6 @@
 {
   "printWidth": 80,
-  "semi": true,
+  "semi": false,
   "singleQuote": true,
   "jsxSingleQuote": true,
   "htmlWhitespaceSensitivity": "strict",
