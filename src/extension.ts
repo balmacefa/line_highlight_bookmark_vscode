@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import { bookmarksManager } from './bookmarks'
-import { logger } from './logger'
 
 export function activate(context: vscode.ExtensionContext) {
   bookmarksManager.init(context)

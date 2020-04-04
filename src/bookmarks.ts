@@ -176,17 +176,15 @@ export const bookmarksManager = {
 
     let lines = this._getLines()
 
-    console.log('XXX', JSON.stringify(contentChanges, null, 2))
-
     contentChanges.forEach((contentChange) => {
       lines = handleEdit(lines, contentChange)
     })
 
     this._setBookmarkLines(context, lines)
 
-    // if (isDebug()) {
-    //   this._saveToState(context)
-    //   this._loadFromState(context)
-    // }
+    if (isDebug()) {
+      this._saveToState(context)
+      this._loadFromState(context)
+    }
   },
 }

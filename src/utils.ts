@@ -4,8 +4,7 @@ import { logger } from './logger'
 
 const LINE_END = 999
 
-// export const isDebug = () => false
-export const isDebug = () => true
+export const isDebug = () => false
 
 export const fileExists = (path: string) => fs.existsSync(path)
 
