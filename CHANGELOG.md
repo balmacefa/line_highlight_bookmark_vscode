@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.9
+
+- fixed bug with zomby bookmarks (bookmarks that become uncontrolled after text updates)
+- clear bookmarks that are inside deleted text blocks
+- different icons for light and dark themes
+
 ## 0.0.7
 
 - new command added - `bookmarksNG.navigateToNextBookmark` (default shortcut `F2`)
