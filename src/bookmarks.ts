@@ -37,6 +37,13 @@ export const bookmarksManager = {
       .sort((a, b) => a - b)
   },
 
+  _clearBookmarks() {
+    Object.values(this.bookmarks).forEach(({ decoration }) =>
+      vscode.window.activeTextEditor?.setDecorations(decoration, [])
+    )
+    this.bookmarks = {}
+  },
+
   _getStoredData(context: vscode.ExtensionContext): BookmarksStateDump {
     try {
       const data: BookmarksStateDump = JSON.parse(
@@ -80,7 +87,7 @@ export const bookmarksManager = {
   },
 
   _setBookmarkLines(context: vscode.ExtensionContext, lines?: number[]) {
-    this.bookmarks = {}
+    this._clearBookmarks()
 
     if (!this.filePath || !lines?.length) {
       return
@@ -90,8 +97,6 @@ export const bookmarksManager = {
 
     lines.forEach((line) => this._bookmarkLine(line, context))
   },
-
-  // xxx
 
   _bookmarkLine(line: number, context: vscode.ExtensionContext) {
     const key = getKey(line)
@@ -148,8 +153,7 @@ export const bookmarksManager = {
       decoration.dispose()
     )
 
-    this.bookmarks = {}
-
+    this._clearBookmarks()
     this._saveToState(context)
   },
 
@@ -175,11 +179,11 @@ export const bookmarksManager = {
     }
 
     let lines = this._getLines()
-
     contentChanges.forEach((contentChange) => {
       lines = handleEdit(lines, contentChange)
     })
 
+    this._clearBookmarks()
     this._setBookmarkLines(context, lines)
 
     if (isDebug()) {
