@@ -19,6 +19,7 @@ These shortcuts are preset:
 - context dependent bookmarks toggle
   - for single cursor mode - normal bookmark toggle is performed
   - for multi-cursor - bookmarks are set if there is at least one line without a bookmark. Otherwise bookmarks are unset
+- remove bookmarks inside multi-line selection on bookmark toggle. Works only for single multi-line selection
 
 ## Thank you!
 

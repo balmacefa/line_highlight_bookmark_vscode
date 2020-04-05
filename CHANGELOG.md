@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.12
+
+- remove bookmarks inside multi-line selection on bookmark toggle. Works only for single multi-line selection
+
 ## 0.0.9
 
 - fixed bug with zomby bookmarks (bookmarks that become uncontrolled after text updates)
