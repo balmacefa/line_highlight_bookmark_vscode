@@ -1,20 +1,15 @@
+import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 
-type Position = {
-  line: number
-  character: number
-}
-
-type Range = {
-  start: Position
-  end: Position
-}
-
-export type TextChange = {
-  range: Range
-  text: string
-}
+type ContentChange =
+  | vscode.TextDocumentContentChangeEvent
+  | {
+      range: {
+        start?: Partial<vscode.Position>
+        end?: Partial<vscode.Position>
+      }
+    }
 
 export type TestCase = {
   debug?: any
@@ -26,7 +21,7 @@ export type TestCase = {
     lines: string[]
     markers: number[]
   }
-  textChange: TextChange
+  textChange: vscode.TextDocumentContentChangeEvent
 }
 
 const getFilePath = (file: string) => path.join('./src/test/suite', file)
@@ -47,7 +42,7 @@ const parseTestCase = (testCase: string): TestCase => {
     .map((p) => p.replace(/^\s*/, '').replace(/\s*$/, ''))
 
   let beforePart = parts[0]
-  const range: Partial<Range> = {}
+  const range: ContentChange['range'] = {}
   beforePart.split('\n').forEach((line, index) => {
     const openIndex = line.indexOf('[')
     if (openIndex >= 0) {

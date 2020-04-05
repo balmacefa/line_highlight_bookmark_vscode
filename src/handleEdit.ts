@@ -24,7 +24,7 @@ export const handleEdit = (
     })
   }
 
-  const result: any = {}
+  const result: { [key: number]: boolean } = {}
   markedLines.forEach((line) => {
     if (line < range.start.line) {
       result[line] = true
