@@ -12,10 +12,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('bookmarksNG.clearAllBookmarks', () => {
-      if (!vscode.window.activeTextEditor) {
-        return
-      }
-
       bookmarksManager.clearAllBookmarks(context)
     })
   )
@@ -24,10 +20,6 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(
       'bookmarksNG.navigateToNextBookmark',
       () => {
-        if (!vscode.window.activeTextEditor) {
-          return
-        }
-
         bookmarksManager.navigateToNext()
       }
     )

@@ -157,6 +157,10 @@ export const bookmarksManager = {
   },
 
   clearAllBookmarks(context: vscode.ExtensionContext) {
+    if (!vscode.window.activeTextEditor) {
+      return
+    }
+
     Object.values(this.bookmarks).forEach(({ decoration }) =>
       decoration.dispose()
     )
@@ -166,7 +170,11 @@ export const bookmarksManager = {
   },
 
   navigateToNext() {
-    const currentLine = vscode.window.activeTextEditor!.selection.active.line
+    if (!vscode.window.activeTextEditor) {
+      return
+    }
+
+    const currentLine = vscode.window.activeTextEditor.selection.active.line
     const lines = this._getLines()
 
     let nextLine = getNextLine(lines, currentLine)
