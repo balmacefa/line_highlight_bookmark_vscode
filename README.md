@@ -8,17 +8,17 @@ Bookmark lines of code to quickly jump to later.
 
 These shortcuts are preset:
 
-- `Cmd+B` (`Ctrl+B`) — toggle bookmarks (multiple cursors supported)
+- `Cmd+B` (`Ctrl+B`) — toggle bookmarks (multi-cursor supported)
 - `Cmd+Shift+B` (`Ctrl+Shift+B`) — clear all bookmarks in current file
 - `F2` — move cursor to the next bookmarked line of code (cursor is moved at the end of the line)
 
 ## Features
 
-- **multiple cursors supported!** — add multiple bookmarks with a single shortcut / command run
+- **multi-cursor supported!** — add multiple bookmarks with a single shortcut / command run
 - bookmarks are set for lines (not for selection ranges)
 - context dependent bookmarks toggle
   - for single cursor mode - normal bookmark toggle is performed
-  - for multiple cursors - bookmarks are set if there is at least one line without a bookmark. Otherwise bookmarks are unset
+  - for multi-cursor - bookmarks are set if there is at least one line without a bookmark. Otherwise bookmarks are unset
 
 ## Thank you!
 

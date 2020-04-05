@@ -1,18 +1,18 @@
 {
-  "version": "0.0.10",
+  "version": "0.0.11",
   "name": "bookmarksng",
   "displayName": "BookmarksNG",
   "publisher": "RK",
   "repository": "https://github.com/chestozo/vscode-bookmarksng",
-  "description": "Bookmark code lines",
+  "description": "Bookmark lines of code to quickly jump to later (multi-cursor supported)",
   "keywords": [
     "bookmark",
     "bookmarks",
     "mark",
     "jump",
     "navigation",
-    "multi cursors support",
-    "multiple cursors support"
+    "multi-cursor",
+    "multi-cursor support"
   ],
   "categories": [
     "Other"
