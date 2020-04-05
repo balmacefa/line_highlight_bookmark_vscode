@@ -2,7 +2,7 @@
 
 Bookmark lines of code to quickly jump to later.
 
-<img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/demo.gif?raw=true" width="520px" />
+<img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/demo2.gif?raw=true" width="520px" />
 
 ## Shortcuts
 
@@ -14,9 +14,9 @@ These shortcuts are preset:
 
 ## Features
 
-- bookmarks are set for lines (not for selection ranges)
 - **multiple cursors supported!** — add multiple bookmarks with a single shortcut / command run
-- context dependent toggling
+- bookmarks are set for lines (not for selection ranges)
+- context dependent bookmarks toggle
   - for single cursor mode - normal bookmark toggle is performed
   - for multiple cursors - bookmarks are set if there is at least one line without a bookmark. Otherwise bookmarks are unset
 
