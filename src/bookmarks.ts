@@ -7,6 +7,7 @@ import {
   moveCursorToLine,
   line2range,
   createDecoration,
+  createLinesRange,
 } from './utils'
 import { handleEdit } from './handleEdit'
 
@@ -39,9 +40,26 @@ export const bookmarksManager = {
 
   _clearBookmarks() {
     Object.values(this.bookmarks).forEach(({ decoration }) =>
-      vscode.window.activeTextEditor?.setDecorations(decoration, [])
+      decoration.dispose()
     )
     this.bookmarks = {}
+  },
+
+  _clearBookmarksAtLines(lines: number[]) {
+    let someCleared = false
+
+    lines
+      .map((l) => getKey(l))
+      .forEach((key) => {
+        const bookmark = this.bookmarks[key]
+        if (bookmark) {
+          bookmark.decoration.dispose()
+          delete this.bookmarks[key]
+          someCleared = true
+        }
+      })
+
+    return someCleared
   },
 
   _getStoredData(context: vscode.ExtensionContext): BookmarksStateDump {
@@ -108,19 +126,6 @@ export const bookmarksManager = {
     this.bookmarks[key] = { decoration, line }
   },
 
-  _clearBookmarksAtLines(lines: number[]) {
-    lines
-      .map((l) => getKey(l))
-      .forEach((key) => {
-        const bookmark = this.bookmarks[key]
-
-        if (bookmark) {
-          bookmark.decoration.dispose()
-          delete this.bookmarks[key]
-        }
-      })
-  },
-
   loadForFile(filePath: string | undefined, context: vscode.ExtensionContext) {
     // Dump current state first.
     this._saveToState(context)
@@ -140,6 +145,21 @@ export const bookmarksManager = {
   toggleBookmarks(context: vscode.ExtensionContext) {
     if (!vscode.window.activeTextEditor) {
       return
+    }
+
+    const mainSelection = vscode.window.activeTextEditor.selection
+    if (
+      vscode.window.activeTextEditor.selections.length === 1 &&
+      mainSelection.start.line < mainSelection.end.line
+    ) {
+      // If there are some markers inside selection - we just clear them.
+      if (
+        this._clearBookmarksAtLines(
+          createLinesRange(mainSelection.start.line, mainSelection.end.line)
+        )
+      ) {
+        return
+      }
     }
 
     const lines = vscode.window.activeTextEditor.selections.map(

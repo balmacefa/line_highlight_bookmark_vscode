@@ -63,3 +63,11 @@ export const createDecoration = (
   }
   return vscode.window.createTextEditorDecorationType(decorationOptions)
 }
+
+export const createLinesRange = (start: number, endInclusive: number) => {
+  const range = []
+  for (let i = start; i <= endInclusive; i++) {
+    range.push(i)
+  }
+  return range
+}
