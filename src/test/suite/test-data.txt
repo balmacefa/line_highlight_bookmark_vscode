@@ -1,0 +1,158 @@
+aaa
+[]bbb
+ccc *
+===[]===
+aaa
+bbb
+ccc *
+
+
+aaa
+[]bbb
+ccc *
+===[
+]===
+aaa
+
+bbb
+ccc *
+
+
+aaa
+[b]cc
+ddd *
+===[]===
+aaa
+cc
+ddd *
+
+
+aaa
+[bbb
+c]ddd *
+===[]===
+aaa
+ddd *
+
+
+aaa
+b[cc *
+d]eee *
+===[]===
+aaa
+beee *
+
+
+aaa
+[bbb *
+]ccc *
+ddd
+===[xxx]===
+aaa
+xxxccc *
+ddd
+
+
+aaa
+[bbb *
+]ccc *
+ddd
+===[
+xxx]===
+aaa
+
+xxxccc *
+ddd
+
+
+aaa
+[bbb *
+]ccc *
+ddd
+===[xxx
+]===
+aaa
+xxx
+ccc *
+ddd
+
+
+aaa
+[bbb
+]ccc *
+ddd
+===[xxx]===
+aaa
+xxxccc *
+ddd
+
+
+aaa
+[bbb *
+]ccc
+ddd
+===[xxx]===
+aaa
+xxxccc
+ddd
+
+
+aaa
+b[bb *
+]ccc
+ddd
+===[xxx]===
+aaa
+bxxxccc *
+ddd
+
+
+aaa
+b[bb *
+ccc *
+ddd] *
+eee
+fff
+===[xxx]===
+aaa
+bxxx *
+eee
+fff
+
+
+aaa
+b[bb
+ccc *
+ddd] *
+eee
+fff
+===[xxx]===
+aaa
+bxxx *
+eee
+fff
+
+
+aaa
+b[bb
+ccc *
+ddd]
+eee
+fff
+===[xxx]===
+aaa
+bxxx
+eee
+fff
+
+
+aaa
+
+bbb
+[ *
+]ccc *
+===[]===
+aaa
+
+bbb
+ccc *
