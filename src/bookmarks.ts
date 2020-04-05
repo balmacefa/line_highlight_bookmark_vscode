@@ -137,7 +137,15 @@ export const bookmarksManager = {
     )
   },
 
-  toggleBookmarks(lines: number[], context: vscode.ExtensionContext) {
+  toggleBookmarks(context: vscode.ExtensionContext) {
+    if (!vscode.window.activeTextEditor) {
+      return
+    }
+
+    const lines = vscode.window.activeTextEditor.selections.map(
+      (selection) => selection.active.line
+    )
+
     const currentLines = this._getLines()
     const newLines = lines.filter((l) => !currentLines.includes(l))
 

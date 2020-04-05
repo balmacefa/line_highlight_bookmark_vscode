@@ -6,15 +6,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('bookmarksNG.toogleBookmarks', () => {
-      if (!vscode.window.activeTextEditor) {
-        return
-      }
-
-      const lines = vscode.window.activeTextEditor.selections.map(
-        (selection) => selection.active.line
-      )
-
-      bookmarksManager.toggleBookmarks(lines, context)
+      bookmarksManager.toggleBookmarks(context)
     })
   )
 
