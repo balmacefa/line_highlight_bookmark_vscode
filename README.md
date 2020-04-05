@@ -1,6 +1,6 @@
 # Bookmarks NG
 
-Bookmark important lines of code to quickly get back to later.
+Bookmark lines of code to quickly jump to later.
 
 <img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/demo.gif?raw=true" width="520px" />
 
