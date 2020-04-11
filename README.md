@@ -4,10 +4,6 @@ Bookmark lines of code to ⚡️ quickly jump to later.
 
 <img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/demo2.gif?raw=true" width="520px" />
 
-[![Inline (VSCode extension) version badge](https://vsmarketplacebadge.apphb.com/version-short/RK.bookmarksng.svg?style=?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=RK.bookmarksng)
-[![Inline (VSCode extension) installs badge](https://vsmarketplacebadge.apphb.com/installs-short/RK.bookmarksng.svg)](https://marketplace.visualstudio.com/items?itemName=RK.bookmarksng)
-[![MIT license badge](https://img.shields.io/badge/license-MIT-orange.svg?color=blue)](http://opensource.org/licenses/MIT)
-
 ## Shortcuts
 
 These shortcuts are preset:
