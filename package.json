@@ -67,8 +67,8 @@
       },
       {
         "command": "bookmarksNG.navigateToPrevBookmark",
-        "key": "f2+shift",
-        "mac": "f2+shift",
+        "key": "shift+f2",
+        "mac": "shift+f2",
         "when": "editorTextFocus"
       }
     ]
