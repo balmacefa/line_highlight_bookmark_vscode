@@ -1,6 +1,6 @@
 # Bookmarks NG
 
-Bookmark lines of code to ⚡️ quickly jump to later.
+Bookmark lines of code to ⚡️ quickly jump to later.  
 Inspired by Sublime Text 3 Bookmarks.
 
 <img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/demo2.gif?raw=true" width="520px" />
