@@ -25,6 +25,15 @@ export function activate(context: vscode.ExtensionContext) {
     )
   )
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      'bookmarksNG.navigateToPrevBookmark',
+      () => {
+        bookmarksManager.navigateToPrev()
+      }
+    )
+  )
+
   // Load bookmarks after active file changes.
   vscode.window.onDidChangeActiveTextEditor(
     (editor) => {

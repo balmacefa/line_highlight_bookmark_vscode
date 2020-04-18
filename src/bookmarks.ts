@@ -4,6 +4,7 @@ import {
   isDebug,
   fileExists,
   getNextLine,
+  getPrevLine,
   moveCursorToLine,
   line2range,
   createDecoration,
@@ -190,6 +191,16 @@ export const bookmarksManager = {
   },
 
   navigateToNext() {
+    this._navigateToLine(getNextLine)
+  },
+
+  navigateToPrev() {
+    this._navigateToLine(getPrevLine)
+  },
+
+  _navigateToLine(
+    lineGetter: (lines: number[], currentLine: number) => number
+  ) {
     if (!vscode.window.activeTextEditor) {
       return
     }
@@ -197,7 +208,7 @@ export const bookmarksManager = {
     const currentLine = vscode.window.activeTextEditor.selection.active.line
     const lines = this._getLines()
 
-    let nextLine = getNextLine(lines, currentLine)
+    let nextLine = lineGetter(lines, currentLine)
 
     logger.info(
       `try to navigate from current line which is ${currentLine} to ${nextLine}`

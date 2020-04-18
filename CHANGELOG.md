@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.16
+
+- "Navigate to previous bookmark" command added (default shortcut `F2+Shift`) - `bookmarksNG.navigateToPrevBookmark`
+
 ## 0.0.12
 
 - remove bookmarks inside multi-line selection on bookmark toggle. Works only for single multi-line selection

@@ -41,6 +41,10 @@
       {
         "command": "bookmarksNG.navigateToNextBookmark",
         "title": "Bookmarks NG: Move cursor to the next bookmark"
+      },
+      {
+        "command": "bookmarksNG.navigateToPrevBookmark",
+        "title": "Bookmarks NG: Move cursor to the previous bookmark"
       }
     ],
     "keybindings": [{
@@ -59,6 +63,12 @@
         "command": "bookmarksNG.navigateToNextBookmark",
         "key": "f2",
         "mac": "f2",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "bookmarksNG.navigateToPrevBookmark",
+        "key": "f2+shift",
+        "mac": "f2+shift",
         "when": "editorTextFocus"
       }
     ]

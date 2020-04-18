@@ -38,7 +38,7 @@ export const getNextLine = (lines: number[], currentLine: number): number => {
     return currentLine
   }
 
-  logger.info(`${JSON.stringify(lines)} ${currentLine}`)
+  logger.info(`getNextLine: ${JSON.stringify(lines)} ${currentLine}`)
 
   if (currentLine < lines[0]) {
     return lines[0]
@@ -50,6 +50,25 @@ export const getNextLine = (lines: number[], currentLine: number): number => {
   while (currentLine >= lines[index++]) {}
 
   return lines[index - 1]
+}
+
+export const getPrevLine = (lines: number[], currentLine: number): number => {
+  if (!lines.length) {
+    return currentLine
+  }
+
+  logger.info(`getPrevLine: ${JSON.stringify(lines)} ${currentLine}`)
+
+  if (currentLine > lines[lines.length - 1]) {
+    return lines[lines.length - 1]
+  } else if (currentLine <= lines[0]) {
+    return lines[lines.length - 1]
+  }
+
+  let index = lines.length - 2
+  while (currentLine <= lines[index--]) {}
+
+  return lines[index + 1]
 }
 
 export const createDecoration = (
