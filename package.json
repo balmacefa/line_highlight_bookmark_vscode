@@ -1,5 +1,5 @@
 {
-  "version": "0.0.16",
+  "version": "0.0.17",
   "name": "bookmarksng",
   "displayName": "BookmarksNG",
   "publisher": "RK",
@@ -30,7 +30,8 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
+    "commands": [
+      {
         "command": "bookmarksNG.toogleBookmarks",
         "title": "Bookmarks NG: Toogle Bookmarks"
       },
@@ -47,7 +48,8 @@
         "title": "Bookmarks NG: Move cursor to the previous bookmark"
       }
     ],
-    "keybindings": [{
+    "keybindings": [
+      {
         "command": "bookmarksNG.toogleBookmarks",
         "key": "ctrl+b",
         "mac": "cmd+b",
