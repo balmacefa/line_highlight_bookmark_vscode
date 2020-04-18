@@ -26,4 +26,5 @@ These shortcuts are preset (can be modified in Settings):
 
 ## Thank you!
 
-<a href="https://www.buymeacoffee.com/UMcwqLs" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="160px"></a>
+<a href="https://paypal.me/rkartsev" target="_blank"><img src="https://github.com/chestozo/vscode-bookmarksng/blob/master/images/dbtn.png?raw=true" width="120px" /></a>
+
