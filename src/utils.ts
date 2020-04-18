@@ -14,11 +14,7 @@ export const moveCursorToLine = (line: number, column: number = LINE_END) => {
   }
 
   let reviewType: vscode.TextEditorRevealType =
-    vscode.TextEditorRevealType.InCenter
-
-  if (line === vscode.window.activeTextEditor.selection.active.line) {
-    reviewType = vscode.TextEditorRevealType.InCenterIfOutsideViewport
-  }
+    vscode.TextEditorRevealType.InCenterIfOutsideViewport
 
   const newSelection = new vscode.Selection(line, column, line, column)
   vscode.window.activeTextEditor.selection = newSelection

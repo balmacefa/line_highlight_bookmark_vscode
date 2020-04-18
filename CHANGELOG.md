@@ -3,6 +3,7 @@
 ## 0.0.16
 
 - "Navigate to previous bookmark" command added (default shortcut `F2+Shift`) - `bookmarksNG.navigateToPrevBookmark`
+- changed default navigation behaviour to scroll bookmarked line to the center only if it was not in current viewport
 
 ## 0.0.12
 
