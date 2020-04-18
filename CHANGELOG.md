@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.18
+
+- Added an option to align bookmarked line at the top when navigating to the next / previous bookmark
+
 ## 0.0.16
 
 - "Navigate to previous bookmark" command added (default shortcut `F2+Shift`) - `bookmarksNG.navigateToPrevBookmark`

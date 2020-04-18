@@ -1,5 +1,5 @@
 {
-  "version": "0.0.17",
+  "version": "0.0.18",
   "name": "bookmarksng",
   "displayName": "BookmarksNG",
   "publisher": "RK",
@@ -73,7 +73,18 @@
         "mac": "shift+f2",
         "when": "editorTextFocus"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "BookmarksNG configuration",
+      "properties": {
+        "bookmarksNG.alignTopOnNavigation": {
+          "type": "boolean",
+          "default": false,
+          "description": "If set bookmarked line will become the topmost when using next / previous navigation commands"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

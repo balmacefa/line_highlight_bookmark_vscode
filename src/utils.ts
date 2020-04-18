@@ -13,8 +13,11 @@ export const moveCursorToLine = (line: number, column: number = LINE_END) => {
     return
   }
 
-  let reviewType: vscode.TextEditorRevealType =
-    vscode.TextEditorRevealType.InCenterIfOutsideViewport
+  let reviewType: vscode.TextEditorRevealType = vscode.workspace
+    .getConfiguration('bookmarksNG')
+    .get('alignTopOnNavigation', false)
+    ? vscode.TextEditorRevealType.AtTop
+    : vscode.TextEditorRevealType.InCenterIfOutsideViewport
 
   const newSelection = new vscode.Selection(line, column, line, column)
   vscode.window.activeTextEditor.selection = newSelection
