@@ -1,14 +1,8 @@
-# Bookmarks NG
-
-Bookmark lines of code to ⚡️ quickly jump to later.  
-Inspired by Sublime Text 3 Bookmarks.
-
-<img src="" width="520px" />
-
-
 # Line Highlight Bookmark
 
 ##### VSCODE EXTENSION
+
+<img src="https://raw.githubusercontent.com/balmacefa/line_highlight_bookmark_vscode/master/images/logo.svg" width="320px" />
 
 Forked from https://github.com/chestozo/vscode-bookmarksng
 
