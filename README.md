@@ -2,7 +2,7 @@
 
 ##### VSCODE EXTENSION
 <p align="center">
-<img src="https://raw.githubusercontent.com/balmacefa/line_highlight_bookmark_vscode/master/images/logo.svg" width="320px" />
+<img src="https://raw.githubusercontent.com/balmacefa/line_highlight_bookmark_vscode/master/images/logo.png" width="320px" />
 </p>
 Forked from https://github.com/chestozo/vscode-bookmarksng
 
