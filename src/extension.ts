@@ -5,20 +5,20 @@ export function activate(context: vscode.ExtensionContext) {
   bookmarksManager.init(context)
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('bookmarksNG.toogleBookmarks', () => {
+    vscode.commands.registerCommand('lineHighlightBookmark.toogleBookmarks', () => {
       bookmarksManager.toggleBookmarks(context)
     })
   )
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('bookmarksNG.clearAllBookmarks', () => {
+    vscode.commands.registerCommand('lineHighlightBookmark.clearAllBookmarks', () => {
       bookmarksManager.clearAllBookmarks(context)
     })
   )
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      'bookmarksNG.navigateToNextBookmark',
+      'lineHighlightBookmark.navigateToNextBookmark',
       () => {
         bookmarksManager.navigateToNext()
       }
@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      'bookmarksNG.navigateToPrevBookmark',
+      'lineHighlightBookmark.navigateToPrevBookmark',
       () => {
         bookmarksManager.navigateToPrev()
       }

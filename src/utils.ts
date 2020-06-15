@@ -14,7 +14,7 @@ export const moveCursorToLine = (line: number, column: number = LINE_END) => {
   }
 
   let reviewType: vscode.TextEditorRevealType = vscode.workspace
-    .getConfiguration('bookmarksNG')
+    .getConfiguration('lineHighlightBookmark')
     .get('alignTopOnNavigation', false)
     ? vscode.TextEditorRevealType.AtTop
     : vscode.TextEditorRevealType.InCenterIfOutsideViewport
@@ -73,12 +73,12 @@ export const getPrevLine = (lines: number[], currentLine: number): number => {
 export const createDecoration = (
   context: vscode.ExtensionContext
 ): vscode.TextEditorDecorationType => {
-  let renderLine = vscode.workspace.getConfiguration('bookmarksNG').get('renderLine', true);
+  let renderLine = vscode.workspace.getConfiguration('lineHighlightBookmark').get('renderLine', true);
   if (renderLine) {
 
-    const borderColor: string = vscode.workspace.getConfiguration('bookmarksNG').get('borderColor', "#65EAB9");
-    const borderWidth = vscode.workspace.getConfiguration('bookmarksNG').get("borderWidth", "2px");
-    const borderStyle = vscode.workspace.getConfiguration('bookmarksNG').get("borderStyle", "solid");
+    const borderColor: string = vscode.workspace.getConfiguration('lineHighlightBookmark').get('borderColor', "#65EAB9");
+    const borderWidth = vscode.workspace.getConfiguration('lineHighlightBookmark').get("borderWidth", "2px");
+    const borderStyle = vscode.workspace.getConfiguration('lineHighlightBookmark').get("borderStyle", "solid");
 
     const decorationOptions: vscode.DecorationRenderOptions = {
       gutterIconPath: context.asAbsolutePath('images/icon.svg'),
@@ -111,3 +111,8 @@ export const createLinesRange = (start: number, endInclusive: number) => {
   }
   return range
 }
+
+
+
+
+

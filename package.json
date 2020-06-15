@@ -1,10 +1,10 @@
 {
-  "version": "0.0.19",
-  "name": "bookmarksng",
-  "displayName": "BookmarksNG",
-  "publisher": "RK",
-  "repository": "https://github.com/chestozo/vscode-bookmarksng",
-  "description": "Bookmark lines of code to quickly jump to later (multi-cursor supported)",
+  "version": "0.0.1",
+  "name": "line_highlight_bookmark_vscode",
+  "displayName": "Line Highlight Bookmark",
+  "publisher": "balmacefa",
+  "repository": "https://github.com/balmacefa/line_highlight_bookmark_vscode",
+  "description": "vscode extension | Bookmark with highlight lines, to quickly jump to later (multi-cursor supported)",
   "keywords": [
     "bookmark",
     "bookmarks",
@@ -21,7 +21,7 @@
     "color": "#111",
     "theme": "dark"
   },
-  "icon": "images/logo.png",
+  "icon": "images/logo.svg",
   "engines": {
     "vscode": "^1.43.0"
   },
@@ -32,43 +32,43 @@
   "contributes": {
     "commands": [
       {
-        "command": "bookmarksNG.toogleBookmarks",
+        "command": "lineHighlightBookmark.toogleBookmarks",
         "title": "Bookmarks NG: Toogle Bookmarks"
       },
       {
-        "command": "bookmarksNG.clearAllBookmarks",
+        "command": "lineHighlightBookmark.clearAllBookmarks",
         "title": "Bookmarks NG: Clear All Bookmarks"
       },
       {
-        "command": "bookmarksNG.navigateToNextBookmark",
+        "command": "lineHighlightBookmark.navigateToNextBookmark",
         "title": "Bookmarks NG: Move cursor to the next bookmark"
       },
       {
-        "command": "bookmarksNG.navigateToPrevBookmark",
+        "command": "lineHighlightBookmark.navigateToPrevBookmark",
         "title": "Bookmarks NG: Move cursor to the previous bookmark"
       }
     ],
     "keybindings": [
       {
-        "command": "bookmarksNG.toogleBookmarks",
+        "command": "lineHighlightBookmark.toogleBookmarks",
         "key": "ctrl+b",
         "mac": "cmd+b",
         "when": "editorTextFocus"
       },
       {
-        "command": "bookmarksNG.clearAllBookmarks",
+        "command": "lineHighlightBookmark.clearAllBookmarks",
         "key": "ctrl+shift+b",
         "mac": "cmd+shift+b",
         "when": "editorTextFocus"
       },
       {
-        "command": "bookmarksNG.navigateToNextBookmark",
+        "command": "lineHighlightBookmark.navigateToNextBookmark",
         "key": "f2",
         "mac": "f2",
         "when": "editorTextFocus"
       },
       {
-        "command": "bookmarksNG.navigateToPrevBookmark",
+        "command": "lineHighlightBookmark.navigateToPrevBookmark",
         "key": "shift+f2",
         "mac": "shift+f2",
         "when": "editorTextFocus"
@@ -76,32 +76,32 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "BookmarksNG configuration",
+      "title": "lineHighlightBookmark configuration",
       "properties": {
-        "bookmarksNG.alignTopOnNavigation": {
+        "lineHighlightBookmark.alignTopOnNavigation": {
           "type": "boolean",
           "default": false,
           "description": "If set bookmarked line will become the topmost when using next / previous navigation commands"
         },
-        "bookmarksNG.renderLine": {
+        "lineHighlightBookmark.renderLine": {
           "type": "boolean",
           "default": true,
           "description": "If set render a line on the bookmark"
         },
-        "bookmarksNG.lineColor": {
+        "lineHighlightBookmark.lineColor": {
           "type": [
             "string"
           ],
           "default": "#65EAB9",
           "description": "Change the line color. (Ex: 'red', '#FFF' #FFFFFFF, 'RGB(255,255,255)','RGB(255, 255, 255. 0.5) )"
         },
-        "bookmarksNG.lineWidth": {
+        "lineHighlightBookmark.lineWidth": {
           "type": [
             "string"
           ],
           "default": "1px"
         },
-        "bookmarksNG.lineStyle": {
+        "lineHighlightBookmark.lineStyle": {
           "type": [
             "string"
           ],

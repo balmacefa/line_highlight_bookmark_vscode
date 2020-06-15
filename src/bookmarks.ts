@@ -12,7 +12,7 @@ import {
 } from './utils'
 import { handleEdit } from './handleEdit'
 
-const storeKey = 'bookmarksNG'
+const storeKey = 'lineHighlightBookmark'
 
 type Bookmarks = {
   [bookmarkKey: string]: {

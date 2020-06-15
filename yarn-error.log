@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/roman.kartsev/reps/vscode-bookmarksng/package.json: Unexpected token { in JSON at position 1691
+  SyntaxError: /Users/roman.kartsev/reps/vscode-lineHighlightBookmark/package.json: Unexpected token { in JSON at position 1691
       at JSON.parse (<anonymous>)
       at /Users/roman.kartsev/.nvm/versions/node/v12.14.1/lib/node_modules/yarn/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -24,10 +24,10 @@ Trace:
 npm manifest: 
   {
     "version": "0.0.15",
-    "name": "bookmarksng",
-    "displayName": "BookmarksNG",
+    "name": "lineHighlightBookmark",
+    "displayName": "lineHighlightBookmark",
     "publisher": "RK",
-    "repository": "https://github.com/chestozo/vscode-bookmarksng",
+    "repository": "https://github.com/chestozo/vscode-lineHighlightBookmark",
     "description": "Bookmark lines of code to quickly jump to later (multi-cursor supported)",
     "keywords": [
       "bookmark",
@@ -55,42 +55,42 @@ npm manifest:
     "main": "./out/extension.js",
     "contributes": {
       "commands": [{
-          "command": "bookmarksNG.toogleBookmarks",
+          "command": "lineHighlightBookmark.toogleBookmarks",
           "title": "Bookmarks NG: Toogle Bookmarks"
         },
         {
-          "command": "bookmarksNG.clearAllBookmarks",
+          "command": "lineHighlightBookmark.clearAllBookmarks",
           "title": "Bookmarks NG: Clear All Bookmarks"
         },
         {
-          "command": "bookmarksNG.navigateToNextBookmark",
+          "command": "lineHighlightBookmark.navigateToNextBookmark",
           "title": "Bookmarks NG: Move cursor to the next bookmark"
         },
         {
-          "command": "bookmarksNG.navigateToPrevBookmark",
+          "command": "lineHighlightBookmark.navigateToPrevBookmark",
           "title": "Bookmarks NG: Move cursor to the previous bookmark"
         }
       ],
       "keybindings": [{
-          "command": "bookmarksNG.toogleBookmarks",
+          "command": "lineHighlightBookmark.toogleBookmarks",
           "key": "ctrl+b",
           "mac": "cmd+b",
           "when": "editorTextFocus"
         },
         {
-          "command": "bookmarksNG.clearAllBookmarks",
+          "command": "lineHighlightBookmark.clearAllBookmarks",
           "key": "ctrl+shift+b",
           "mac": "cmd+shift+b",
           "when": "editorTextFocus"
         },
         {
-          "command": "bookmarksNG.navigateToNextBookmark",
+          "command": "lineHighlightBookmark.navigateToNextBookmark",
           "key": "f2",
           "mac": "f2",
           "when": "editorTextFocus"
         }
         {
-          "command": "bookmarksNG.navigateToPrevBookmark",
+          "command": "lineHighlightBookmark.navigateToPrevBookmark",
           "key": "f2+shift",
           "mac": "f2+shift",
           "when": "editorTextFocus"
