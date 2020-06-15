@@ -8,7 +8,10 @@ Forked from https://github.com/chestozo/vscode-bookmarksng
 
 Bookmark with highlight lines.
 
-  
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/balmacefa/line_highlight_bookmark_vscode/master/images/example.gif" width="550px" />
+</p>
 
 ## Shortcuts
 
@@ -63,3 +66,7 @@ These shortcuts  can be modified in Settings:
 - remove bookmarks inside multi-line selection on bookmark toggle. Works only for single multi-line selection
 
 - navigation to next / previous bookmark with a shortcut
+
+## Bye
+
+![imichi cat](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
