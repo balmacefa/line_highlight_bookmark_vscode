@@ -46,7 +46,7 @@ export const getNextLine = (lines: number[], currentLine: number): number => {
   }
 
   let index = 1
-  while (currentLine >= lines[index++]) {}
+  while (currentLine >= lines[index++]) { }
 
   return lines[index - 1]
 }
@@ -65,7 +65,7 @@ export const getPrevLine = (lines: number[], currentLine: number): number => {
   }
 
   let index = lines.length - 2
-  while (currentLine <= lines[index--]) {}
+  while (currentLine <= lines[index--]) { }
 
   return lines[index + 1]
 }
@@ -73,13 +73,35 @@ export const getPrevLine = (lines: number[], currentLine: number): number => {
 export const createDecoration = (
   context: vscode.ExtensionContext
 ): vscode.TextEditorDecorationType => {
-  const decorationOptions: vscode.DecorationRenderOptions = {
-    gutterIconPath: context.asAbsolutePath('images/icon.svg'),
-    dark: {
-      gutterIconPath: context.asAbsolutePath('images/icond.svg'),
-    },
+  let renderLine = vscode.workspace.getConfiguration('bookmarksNG').get('renderLine', true);
+  if (renderLine) {
+
+    const borderColor: string = vscode.workspace.getConfiguration('bookmarksNG').get('borderColor', "#65EAB9");
+    const borderWidth = vscode.workspace.getConfiguration('bookmarksNG').get("borderWidth", "2px");
+    const borderStyle = vscode.workspace.getConfiguration('bookmarksNG').get("borderStyle", "solid");
+
+    const decorationOptions: vscode.DecorationRenderOptions = {
+      gutterIconPath: context.asAbsolutePath('images/icon.svg'),
+      dark: {
+        gutterIconPath: context.asAbsolutePath('images/icond.svg'),
+      },
+      isWholeLine: true,
+      borderWidth: `0 0 ${borderWidth} 0`,
+      borderStyle: `${borderStyle}`,
+      borderColor: borderColor
+    }
+
+    return vscode.window.createTextEditorDecorationType(decorationOptions);
+
+  } else {
+    const decorationOptions: vscode.DecorationRenderOptions = {
+      gutterIconPath: context.asAbsolutePath('images/icon.svg'),
+      dark: {
+        gutterIconPath: context.asAbsolutePath('images/icond.svg'),
+      },
+    }
+    return vscode.window.createTextEditorDecorationType(decorationOptions)
   }
-  return vscode.window.createTextEditorDecorationType(decorationOptions)
 }
 
 export const createLinesRange = (start: number, endInclusive: number) => {

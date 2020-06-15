@@ -30,7 +30,8 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
+    "commands": [
+      {
         "command": "bookmarksNG.toogleBookmarks",
         "title": "Bookmarks NG: Toogle Bookmarks"
       },
@@ -47,7 +48,8 @@
         "title": "Bookmarks NG: Move cursor to the previous bookmark"
       }
     ],
-    "keybindings": [{
+    "keybindings": [
+      {
         "command": "bookmarksNG.toogleBookmarks",
         "key": "ctrl+b",
         "mac": "cmd+b",
@@ -80,6 +82,39 @@
           "type": "boolean",
           "default": false,
           "description": "If set bookmarked line will become the topmost when using next / previous navigation commands"
+        },
+        "bookmarksNG.renderLine": {
+          "type": "boolean",
+          "default": true,
+          "description": "If set render a line on the bookmark"
+        },
+        "bookmarksNG.lineColor": {
+          "type": [
+            "string"
+          ],
+          "default": "#65EAB9",
+          "description": "Change the line color. (Ex: 'red', '#FFF' #FFFFFFF, 'RGB(255,255,255)','RGB(255, 255, 255. 0.5) )"
+        },
+        "bookmarksNG.lineWidth": {
+          "type": [
+            "string"
+          ],
+          "default": "1px"
+        },
+        "bookmarksNG.lineStyle": {
+          "type": [
+            "string"
+          ],
+          "enum": [
+            "solid",
+            "dashed",
+            "inset",
+            "double",
+            "groove",
+            "outset",
+            "ridge"
+          ],
+          "default": "solid"
         }
       }
     }
