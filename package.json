@@ -21,7 +21,7 @@
     "color": "#111",
     "theme": "dark"
   },
-  "icon": "images/logo.svg",
+  "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.43.0"
   },
