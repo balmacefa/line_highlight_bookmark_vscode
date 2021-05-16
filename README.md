@@ -57,6 +57,8 @@ These shortcuts  can be modified in Settings:
 
 - **multi-cursor supported!** — add multiple bookmarks with a single shortcut / command run
 
+- **multi-editor supported!** — Line highlight stays always on
+
 - bookmarks are set for lines (not for selection ranges)
 
 - context dependent bookmarks toggle

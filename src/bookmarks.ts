@@ -30,20 +30,46 @@ function getKey(line: number) {
 }
 
 export const bookmarksManager = {
-  bookmarks: {} as Bookmarks,
+  bookmarks: {} as { [key: string]: any | Bookmarks },
   filePath: '' as string | undefined,
 
+  // @ts-ignore
+  _getBookmarks(key: string | null = null): Bookmarks | [Bookmarks] {
+    if (this.filePath) {
+      if (!this.bookmarks[this.filePath]) {
+        this.bookmarks[this.filePath] = {}
+      }
+      return key ? this.bookmarks[this.filePath][key] : this.bookmarks[this.filePath]
+    }
+  },
+  _setBookmarks(key: string | null = null, value: Bookmarks | null = null, deleteKey: boolean = false) {
+    if (this.filePath) {
+      if (!this.bookmarks[this.filePath]) {
+        this.bookmarks[this.filePath] = {}
+      }
+
+      if (key) {
+        if (deleteKey) {
+          delete this.bookmarks[this.filePath][key]
+          return;
+        }
+        this.bookmarks[this.filePath][key] = value
+      } else {
+        this.bookmarks[this.filePath] = {}
+      }
+    }
+  },
   _getLines() {
-    return Object.values(this.bookmarks)
+    return Object.values(this._getBookmarks())
       .map(({ line }) => line)
       .sort((a, b) => a - b)
   },
 
   _clearBookmarks() {
-    Object.values(this.bookmarks).forEach(({ decoration }) =>
+    Object.values(this._getBookmarks()).forEach(({ decoration }) =>
       decoration.dispose()
     )
-    this.bookmarks = {}
+    this._setBookmarks()
   },
 
   _clearBookmarksAtLines(lines: number[]) {
@@ -52,10 +78,11 @@ export const bookmarksManager = {
     lines
       .map((l) => getKey(l))
       .forEach((key) => {
-        const bookmark = this.bookmarks[key]
+        const bookmark = this._getBookmarks(key)
         if (bookmark) {
+          // @ts-ignore
           bookmark.decoration.dispose()
-          delete this.bookmarks[key]
+          this._setBookmarks(key, null, true);
           someCleared = true
         }
       })
@@ -119,12 +146,13 @@ export const bookmarksManager = {
 
   _bookmarkLine(line: number, context: vscode.ExtensionContext) {
     const key = getKey(line)
-    const decoration =
-      this.bookmarks[key]?.decoration || createDecoration(context)
+    // @ts-ignore
+    const decoration = this._getBookmarks(key)?.decoration || createDecoration(context)
 
     const range = line2range(line)
     vscode.window.activeTextEditor?.setDecorations(decoration, [range])
-    this.bookmarks[key] = { decoration, line }
+    // @ts-ignore
+    this._setBookmarks(key, { line, decoration })
   },
 
   loadForFile(filePath: string | undefined, context: vscode.ExtensionContext) {
@@ -182,7 +210,7 @@ export const bookmarksManager = {
       return
     }
 
-    Object.values(this.bookmarks).forEach(({ decoration }) =>
+    Object.values(this._getBookmarks()).forEach(({ decoration }) =>
       decoration.dispose()
     )
 

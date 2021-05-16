@@ -87,7 +87,7 @@ export const createDecoration = (
       },
       isWholeLine: true,
       borderWidth: `0 0 ${borderWidth} 0`,
-      borderStyle: `${borderStyle}`,
+      borderStyle: borderStyle,
       borderColor: borderColor
     }
 
