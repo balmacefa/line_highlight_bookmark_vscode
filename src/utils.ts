@@ -76,9 +76,9 @@ export const createDecoration = (
   let renderLine = vscode.workspace.getConfiguration('lineHighlightBookmark').get('renderLine', true);
   if (renderLine) {
 
-    const borderColor: string = vscode.workspace.getConfiguration('lineHighlightBookmark').get('borderColor', "#65EAB9");
-    const borderWidth = vscode.workspace.getConfiguration('lineHighlightBookmark').get("borderWidth", "2px");
-    const borderStyle = vscode.workspace.getConfiguration('lineHighlightBookmark').get("borderStyle", "solid");
+    const borderColor: string = vscode.workspace.getConfiguration('lineHighlightBookmark').get('lineColor', "#65EAB9");
+    const borderWidth = vscode.workspace.getConfiguration('lineHighlightBookmark').get("lineWidth", "2px");
+    const borderStyle = vscode.workspace.getConfiguration('lineHighlightBookmark').get("lineStyle", "solid");
 
     const decorationOptions: vscode.DecorationRenderOptions = {
       gutterIconPath: context.asAbsolutePath('images/icon.svg'),
