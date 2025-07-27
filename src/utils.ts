@@ -67,7 +67,7 @@ export const moveCursorToLine = (line: number) => {
 export const line2range = (line: number): vscode.Range => {
   const editor = vscode.window.activeTextEditor;
   if (!editor) return new vscode.Range(0, 0, 0, 0) // Retorna un rango vacío si no hay editor activo
-  
+
   const start = new vscode.Position(line, 0)
   const end = new vscode.Position(line, editor.document.lineAt(line).range.end.character)
   return new vscode.Range(start, end)
@@ -121,16 +121,18 @@ export const createDecoration = (
 ): vscode.TextEditorDecorationType => {
   const config = vscode.workspace.getConfiguration('lineHighlightBookmark')
   const renderLine = config.get<boolean>('renderLine', true)
+  const borderColor = config.get<string>('lineColor', '#65EAB9')
 
   const baseOptions: vscode.DecorationRenderOptions = {
     gutterIconPath: context.asAbsolutePath('images/icon.svg'),
     dark: {
       gutterIconPath: context.asAbsolutePath('images/icond.svg'),
     },
+    overviewRulerColor: borderColor, // muestra barra amarilla en minimapa y barra lateral
+    overviewRulerLane: vscode.OverviewRulerLane.Full, // posición en la regla lateral/minimapa
   }
 
   if (renderLine) {
-    const borderColor = config.get<string>('lineColor', '#65EAB9')
     const borderWidth = config.get<string>('lineWidth', '2px')
     const borderStyle = config.get<string>('lineStyle', 'solid')
 

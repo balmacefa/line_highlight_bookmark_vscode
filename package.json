@@ -82,10 +82,15 @@
       "type": "object",
       "title": "lineHighlightBookmark configuration",
       "properties": {
-        "lineHighlightBookmark.keyword": {
+        "lineHighlightBookmark.keywords": {
           "type": "string",
-          "default": "linedoc",
-          "description": "Palabra clave que activa el bookmark automático si aparece en una línea."
+          "default": "linedoc,ldoc",
+          "description": "lineHighlightBookmark: Keywords to automatically bookmark lines. Separate multiple keywords with commas. Example: 'linedoc,ldoc'. If a line contains any of these keywords, it will be bookmarked."
+        },
+        "lineHighlightBookmark.deleteLineIfKeywordRemoved": {
+          "type": "boolean",
+          "default": false,
+          "description": "lineHighlightBookmark: remove the bookmark if the keyword is removed from the line."
         },
         "lineHighlightBookmark.alignTopOnNavigation": {
           "type": "boolean",

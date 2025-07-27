@@ -323,6 +323,7 @@ export const bookmarksManager = {
     if (!contentChanges.length) return
 
     const keyword = vscode.workspace.getConfiguration('lineHighlightBookmark').get<string>('keyword', 'linedoc')
+    
     if (!keyword || !this.filePath) return
 
     const editor = vscode.window.activeTextEditor
@@ -341,10 +342,8 @@ export const bookmarksManager = {
       if (hasKeyword && !isBookmarked) {
         this._bookmarkLine(changedLine, context)
         updatedLines.push(changedLine)
-      } else if (!hasKeyword && isBookmarked) {
-        this._clearBookmarksAtLines([changedLine])
-        updatedLines = updatedLines.filter((line) => line !== changedLine)
       }
+      
     }
 
     // Reestablecer bookmarks con líneas actualizadas
