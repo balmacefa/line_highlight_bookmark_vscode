@@ -313,47 +313,52 @@ export const bookmarksManager = {
     moveCursorToLine(nextLine)
   },
 
-  /**
-   * Actualiza los marcadores al detectar cambios en el contenido del documento.
-   */
   handleTextChanges(
     context: vscode.ExtensionContext,
     contentChanges: ReadonlyArray<vscode.TextDocumentContentChangeEvent>
   ) {
     if (!contentChanges.length) return
 
-    const keyword = vscode.workspace.getConfiguration('lineHighlightBookmark').get<string>('keyword', 'linedoc')
-    
-    if (!keyword || !this.filePath) return
+    let lines = this._getLines()
+    contentChanges.forEach((change) => {
+      lines = handleEdit(lines, change)
+    })
+
+
+    const keywordSetting = vscode.workspace
+      .getConfiguration('lineHighlightBookmark')
+      .get<string>('keywords', '')
+
+    const keywords = keywordSetting
+      .split(',')
+      .map(k => k.trim())
+      .filter(k => k.length > 0)
 
     const editor = vscode.window.activeTextEditor
     if (!editor) return
 
     const document = editor.document
-    let updatedLines = this._getLines()
-
     for (const change of contentChanges) {
       const changedLine = change.range.start.line
       const lineText = document.lineAt(changedLine).text
-      const key = getKey(changedLine)
-      const hasKeyword = lineText.includes(keyword)
-      const isBookmarked = !!this._getBookmarks(key)
 
-      if (hasKeyword && !isBookmarked) {
-        this._bookmarkLine(changedLine, context)
-        updatedLines.push(changedLine)
+      const hasKeyword = keywords.some(kw => lineText.includes(kw))
+      if (hasKeyword) {
+        lines.push(changedLine)
       }
-      
     }
 
-    // Reestablecer bookmarks con líneas actualizadas
-    this._setBookmarkLines(context, updatedLines)
+
+    this._clearBookmarks()
+    this._setBookmarkLines(context, lines)
 
     if (isDebug()) {
       this._saveToState(context)
       this._loadFromState(context)
     }
   },
+
+
 
   /**
  * Escanea el archivo activo buscando la palabra clave para marcar bookmarks automáticos.
