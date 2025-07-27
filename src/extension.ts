@@ -1,3 +1,27 @@
+/**
+ * extension.ts
+ * 
+ * Punto de entrada principal de la extensión "Line Highlight Bookmark" para Visual Studio Code.
+ * Registra los comandos disponibles y enlaza los eventos del entorno de VS Code con el manejador
+ * centralizado de bookmarks (`bookmarksManager`).
+ * 
+ * Funcionalidades expuestas:
+ * - Activación y desactivación de la extensión (`activate`, `deactivate`)
+ * - Registro de comandos:
+ *   - `lineHighlightBookmark.toogleBookmarks`: Marca o desmarca líneas seleccionadas como bookmarks.
+ *   - `lineHighlightBookmark.clearAllBookmarks`: Elimina todos los bookmarks del archivo actual.
+ *   - `lineHighlightBookmark.navigateToNextBookmark`: Salta al siguiente bookmark.
+ *   - `lineHighlightBookmark.navigateToPrevBookmark`: Salta al bookmark anterior.
+ * 
+ * - Eventos del entorno:
+ *   - Al cambiar de editor activo (`onDidChangeActiveTextEditor`), se carga el estado de bookmarks
+ *     para el nuevo archivo.
+ *   - Al modificar el contenido de un archivo (`onDidChangeTextDocument`), se ajustan las posiciones
+ *     de los bookmarks para mantenerse sincronizadas.
+ * 
+ * Este archivo delega la lógica de estado, persistencia y decoración visual al módulo `bookmarks.ts`.
+ */
+
 import * as vscode from 'vscode'
 import { bookmarksManager } from './bookmarks'
 
