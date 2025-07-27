@@ -218,7 +218,11 @@ export const bookmarksManager = {
     this._saveToState(context)
     this.filePath = filePath
     this._loadFromState(context)
+    // Escanea para agregar bookmarks automáticos según la palabra clave
+    this._scanForKeywordInDocument(context)
   },
+
+
 
   /**
    * Inicializa los marcadores del archivo actualmente abierto.
@@ -318,17 +322,67 @@ export const bookmarksManager = {
   ) {
     if (!contentChanges.length) return
 
-    let lines = this._getLines()
-    contentChanges.forEach((change) => {
-      lines = handleEdit(lines, change)
-    })
+    const keyword = vscode.workspace.getConfiguration('lineHighlightBookmark').get<string>('keyword', 'linedoc')
+    if (!keyword || !this.filePath) return
 
-    this._clearBookmarks()
-    this._setBookmarkLines(context, lines)
+    const editor = vscode.window.activeTextEditor
+    if (!editor) return
+
+    const document = editor.document
+    let updatedLines = this._getLines()
+
+    for (const change of contentChanges) {
+      const changedLine = change.range.start.line
+      const lineText = document.lineAt(changedLine).text
+      const key = getKey(changedLine)
+      const hasKeyword = lineText.includes(keyword)
+      const isBookmarked = !!this._getBookmarks(key)
+
+      if (hasKeyword && !isBookmarked) {
+        this._bookmarkLine(changedLine, context)
+        updatedLines.push(changedLine)
+      } else if (!hasKeyword && isBookmarked) {
+        this._clearBookmarksAtLines([changedLine])
+        updatedLines = updatedLines.filter((line) => line !== changedLine)
+      }
+    }
+
+    // Reestablecer bookmarks con líneas actualizadas
+    this._setBookmarkLines(context, updatedLines)
 
     if (isDebug()) {
       this._saveToState(context)
       this._loadFromState(context)
     }
   },
+
+  /**
+ * Escanea el archivo activo buscando la palabra clave para marcar bookmarks automáticos.
+ */
+  _scanForKeywordInDocument(context: vscode.ExtensionContext) {
+    const editor = vscode.window.activeTextEditor
+    if (!editor) return
+    const document = editor.document
+    const keyword = vscode.workspace.getConfiguration('lineHighlightBookmark').get<string>('keyword', 'linedoc')
+    if (!keyword) return
+
+    let linesToBookmark: number[] = []
+
+    for (let lineNum = 0; lineNum < document.lineCount; lineNum++) {
+      const lineText = document.lineAt(lineNum).text
+      const key = getKey(lineNum)
+      const isBookmarked = !!this._getBookmarks(key)
+      if (lineText.includes(keyword) && !isBookmarked) {
+        linesToBookmark.push(lineNum)
+      }
+    }
+
+    if (linesToBookmark.length) {
+      linesToBookmark.forEach(line => this._bookmarkLine(line, context))
+      const allLines = [...new Set([...this._getLines(), ...linesToBookmark])].sort((a, b) => a - b)
+      this._setBookmarkLines(context, allLines)
+    }
+  },
+
+
 }

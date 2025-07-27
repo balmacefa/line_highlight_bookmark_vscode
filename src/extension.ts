@@ -57,6 +57,13 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   )
+  
+  context.subscriptions.push(
+    vscode.commands.registerCommand('lineHighlightBookmark.openSettings', () => {
+      // Abre directamente la configuración de tu extensión
+    vscode.commands.executeCommand('workbench.action.openSettings', 'lineHighlightBookmark');
+    })
+  );
 
   // Load bookmarks after active file changes.
   vscode.window.onDidChangeActiveTextEditor(

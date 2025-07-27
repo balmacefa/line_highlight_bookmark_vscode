@@ -32,25 +32,44 @@ export const fileExists = (path: string): boolean => fs.existsSync(path)
  * Mueve el cursor a una línea y columna específica en el editor activo.
  * Si no se especifica columna, va al final lógico de la línea.
  */
-export const moveCursorToLine = (line: number, column: number = LINE_END) => {
+export const moveCursorToLine = (line: number) => {
   const editor = vscode.window.activeTextEditor
   if (!editor) return
 
-  const reviewType: vscode.TextEditorRevealType = vscode.workspace
-    .getConfiguration('lineHighlightBookmark')
-    .get('alignTopOnNavigation', false)
+  const config = vscode.workspace.getConfiguration('lineHighlightBookmark')
+
+  const alignTop: boolean = config.get('alignTopOnNavigation', false)
+  const cursorPosition: 'lineStart' | 'lineEnd' = config.get('cursorPositionOnNavigation', 'lineStart')
+
+  const reviewType: vscode.TextEditorRevealType = alignTop
     ? vscode.TextEditorRevealType.AtTop
     : vscode.TextEditorRevealType.InCenterIfOutsideViewport
+
+  const lineText = editor.document.lineAt(line).text
+
+  let column: number
+
+  if (cursorPosition === 'lineStart') {
+    // Índice del primer carácter no vacío (no espacio/tab)
+    column = lineText.search(/\S|$/) // Si no hay texto, será 0
+  } else {
+    // Final lógico de la línea
+    column = lineText.length
+  }
 
   const newSelection = new vscode.Selection(line, column, line, column)
   editor.selection = newSelection
   editor.revealRange(newSelection, reviewType)
 }
 
+
 /** Convierte un número de línea a un objeto Range que representa toda la línea */
 export const line2range = (line: number): vscode.Range => {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) return new vscode.Range(0, 0, 0, 0) // Retorna un rango vacío si no hay editor activo
+  
   const start = new vscode.Position(line, 0)
-  const end = new vscode.Position(line, LINE_END)
+  const end = new vscode.Position(line, editor.document.lineAt(line).range.end.character)
   return new vscode.Range(start, end)
 }
 
@@ -70,10 +89,8 @@ export const getNextLine = (lines: number[], currentLine: number): number => {
     return lines[0]
   }
 
-  let index = 1
-  while (currentLine >= lines[index]) index++
-
-  return lines[index]
+  const index = lines.findIndex(line => line > currentLine);
+  return index === -1 ? lines[0] : lines[index];
 }
 
 /**
@@ -113,9 +130,9 @@ export const createDecoration = (
   }
 
   if (renderLine) {
-    const borderColor = config.get<string>('borderColor', '#65EAB9')
-    const borderWidth = config.get<string>('borderWidth', '2px')
-    const borderStyle = config.get<string>('borderStyle', 'solid')
+    const borderColor = config.get<string>('lineColor', '#65EAB9')
+    const borderWidth = config.get<string>('lineWidth', '2px')
+    const borderStyle = config.get<string>('lineStyle', 'solid')
 
     return vscode.window.createTextEditorDecorationType({
       ...baseOptions,
@@ -133,10 +150,5 @@ export const createDecoration = (
  * Crea un arreglo de líneas desde `start` hasta `endInclusive`, inclusive.
  * @example createLinesRange(2, 5) => [2, 3, 4, 5]
  */
-export const createLinesRange = (start: number, endInclusive: number): number[] => {
-  const range: number[] = []
-  for (let i = start; i <= endInclusive; i++) {
-    range.push(i)
-  }
-  return range
-}
+export const createLinesRange = (start: number, endInclusive: number): number[] =>
+  Array.from({ length: endInclusive - start + 1 }, (_, i) => start + i)
