@@ -1,3 +1,4 @@
+// logger.ts
 import * as vscode from 'vscode'
 import { isDebug } from './utils'
 
