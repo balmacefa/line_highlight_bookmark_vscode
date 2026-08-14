@@ -8,7 +8,7 @@ export const isDebug = () => false
 
 export const fileExists = (path: string) => fs.existsSync(path)
 
-export const moveCursorToLine = (line: number, column: number = LINE_END) => {
+export const moveCursorToLine = (line: number, column: number = 0) => {
   if (!vscode.window.activeTextEditor) {
     return
   }
